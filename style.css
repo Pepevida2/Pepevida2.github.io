@@ -1,0 +1,166 @@
+/* reset + base */
+* { box-sizing: border-box; } 
+/* 
+  Esto hace que el padding y el border de cualquier elemento se incluyan dentro del width/height.
+*/
+
+html, body {
+  margin: 0; 
+  /* elimina márgenes por defecto que los navegadores ponen */
+  padding: 0; 
+  /* elimina padding por defecto */
+  height: 100%; 
+  /* permite que el body y html llenen toda la ventana */
+  font-family: "Poppins", sans-serif; 
+  /* define la tipografía base de la página */
+  color: rgb(0, 0, 0); 
+  /* color de texto por defecto (negro) */
+  /* background: linear-gradient(180deg, #0f1113 0%, #24272c 100%);
+     estaba intentando un degradado bonito, pero se rompe con el efecto líquido */
+}
+
+
+/* canvas que crea la lib - full screen y detrás */
+#stage {
+  position: fixed; 
+  /* fijo en pantalla, no se mueve al scrollear */
+  inset: 0; 
+  /* top, right, bottom, left = 0 */
+  width: 100vw; 
+  /* ancho completo de la ventana */
+  height: 100vh; 
+  /* altura completa de la ventana */
+  display: block; 
+  /* asegurar que el canvas sea bloque */
+  z-index: -1; 
+  /* lo mandamos atrás del contenido principal */
+  pointer-events: none; 
+  /* pasa los clicks a lo que esté debajo, el canvas no captura eventos */
+  background: transparent; 
+  /* fondo transparente para que se vea tu efecto líquido */
+}
+
+
+/* contenido arriba */
+.content {
+  position: relative; 
+  /* relativo para que el z-index funcione */
+  z-index: 10; 
+  /* se asegura de que esté arriba del canvas */
+  text-align: center; 
+  /* centra todo el contenido horizontalmente */
+  margin-top: 18vh; 
+  /* separa el contenido un poco desde arriba */
+}
+
+
+.titulo h1 {
+  font-family: "Kenia", sans-serif; 
+  /* tipografía especial para tu título */
+  font-size: 4.2rem; 
+  /* tamaño grande */
+  margin: 0 0 1rem 0; 
+  /* margen abajo para separar subtítulo */
+  text-shadow: 0 0 20px rgb(45, 139, 239); 
+  /* sombra azulada difusa que da efecto glow */
+  color: #000; 
+  /* texto negro para contraste con fondo blanco */
+}
+
+
+.subtitulo {
+  font-size: 1.4rem; 
+  /* tamaño más pequeño que el título */
+  margin: 0 0 1.6rem 0; 
+  /* margen inferior para separar de los botones */
+  font-weight: 300; 
+  /* letra ligera */
+  color: #000; 
+  /* negro para contraste */
+}
+
+
+.nav ul {
+  list-style: none; 
+  /* quita los bullets de la lista */
+  padding: 0; 
+  /* elimina padding por defecto de ul */
+  margin: 1rem 0 0 0; 
+  /* margen superior para separar del subtítulo */
+  display: flex; 
+  /* flexbox para manejar la dirección y spacing */
+  flex-direction: column; 
+  /* vertical */
+  gap: 2rem; 
+  /* espacio entre botones */
+  align-items: center; 
+  /* centra los botones horizontalmente */
+}
+
+
+.nav a {
+  text-decoration: none; 
+  /* quita el subrayado */
+  color: #000000; 
+  /* negro */
+  font-size: 1.1rem; 
+  /* tamaño de texto de los botones */
+  padding: 8px 14px; 
+  /* espacio interno antes de redondear */
+  border-radius: 8px; 
+  /* esquinas ligeramente redondeadas */
+  background: rgba(255,255,255,0.06); 
+  /* fondo semitransparente */
+  transition: transform .18s ease, background .18s ease, color .18s ease; 
+  /* animaciones suaves para hover */
+}
+
+.nav a:hover {
+  transform: scale(1.04); 
+  /* agranda un poquito al pasar el mouse */
+  background: rgba(255,255,255,0.14); 
+  /* se vuelve más visible al hover */
+  color: #000; 
+  /* mantiene texto negro */
+}
+
+/* para que el canvas quede atrás */
+#canvas {
+  position: fixed; 
+  top:0; left:0; 
+  width:100%; 
+  height:100%; 
+  z-index:-1; 
+  display:block; 
+}
+
+/* y el contenido arriba */
+.content {
+  position: relative; 
+  z-index: 5; 
+}
+
+.nav a {
+  position: relative; 
+  /* necesario para pseudo-elementos si quieres hacer overlays */
+  overflow: hidden; 
+  /* evita que efectos visuales salgan del botón */
+  backdrop-filter: blur(3px); 
+  /* desenfoque glass/muy sutil para que destaque sobre el líquido */
+  transition: transform .22s ease, background .22s ease; 
+  /* animación suave para hover */
+}
+
+.nav a {
+  text-decoration: none; 
+  color: #000000; 
+  font-size: 1.1rem; 
+  padding: 12px 26px; 
+  /* más padding para botones gorditos */
+  border-radius: 999px; 
+  /* redondos completos */
+  background: rgba(6, 249, 26, 0.263); 
+  /* fondo violeta/transparente elegante */
+  position: relative; 
+  overflow: hidden; 
+  }
