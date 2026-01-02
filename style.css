@@ -5,6 +5,14 @@
 */
 
 html, body {
+
+  
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  
   margin: 0; 
   /* elimina márgenes por defecto que los navegadores ponen */
   padding: 0; 
